@@ -31,7 +31,8 @@ class CadastroTransacoes extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                   return cadastrar(controllerTitulo.text, double.parse(controllerValor.text));
+                    cadastrar(controllerTitulo.text,
+                        double.tryParse(controllerValor.text) ?? 0.0);
                   },
                   child: const Text(
                     "Nova Transação",

@@ -11,20 +11,22 @@ class Home extends StatelessWidget {
         title: const Text("Despesas Pessoais"),
         centerTitle: true,
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment:
-            CrossAxisAlignment.stretch, //Ocupa a largura inteira
-        children: const [
-          SizedBox(
-            child: Card(
-              color: Colors.red,
-              elevation: 5,
-              child: Text("Gráfico"),
+      body: SingleChildScrollView(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment:
+              CrossAxisAlignment.stretch, //Ocupa a largura inteira
+          children: const [
+            SizedBox(
+              child: Card(
+                color: Colors.red,
+                elevation: 5,
+                child: Text("Gráfico"),
+              ),
             ),
-          ),
-          TransacoesUsuario()
-        ],
+            TransacoesUsuario()
+          ],
+        ),
       ),
     );
   }
