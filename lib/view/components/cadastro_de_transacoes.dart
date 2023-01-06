@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class CadastroTransacoes extends StatelessWidget {
   final controllerTitulo = TextEditingController();
   final controllerValor = TextEditingController();
-
-  CadastroTransacoes({super.key});
+  final Function(String, double) cadastrar;
+  CadastroTransacoes({super.key, required this.cadastrar});
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,7 @@ class CadastroTransacoes extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    print(controllerTitulo.text);
-                    print(controllerValor.text);
+                   return cadastrar(controllerTitulo.text, double.parse(controllerValor.text));
                   },
                   child: const Text(
                     "Nova Transação",
