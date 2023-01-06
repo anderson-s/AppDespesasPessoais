@@ -40,17 +40,23 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment:
             CrossAxisAlignment.stretch, //Ocupa a largura inteira
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             child: Card(
               color: Colors.red,
               elevation: 5,
               child: Text("Gráfico"),
             ),
           ),
-          Card(
-            child: Text("Lista"),
-          )
+          Column(
+            children: [
+              ..._transacoes
+                .map(
+                  (e) => Card(child: Text(e.titulo.toString())),
+                )
+                .toList(),
+            ]
+          ),
         ],
       ),
     );
