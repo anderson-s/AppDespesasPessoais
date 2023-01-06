@@ -1,5 +1,5 @@
 
- import 'package:despesas_pessoais/home.dart';
+ import 'package:despesas_pessoais/view/home.dart';
 import 'package:flutter/material.dart';
 
 main() {
