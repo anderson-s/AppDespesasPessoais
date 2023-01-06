@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:despesas_pessoais/model/transacao.dart';
 import 'package:flutter/material.dart';
 
@@ -48,15 +50,26 @@ class _HomeState extends State<Home> {
               child: Text("Gráfico"),
             ),
           ),
-          Column(
-            children: [
-              ..._transacoes
+          Column(children: [
+            ..._transacoes
                 .map(
-                  (e) => Card(child: Text(e.titulo.toString())),
+                  (e) => Card(
+                      child: Row(
+                    children: [
+                      Container(child: Text(e.valor.toString())),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(e.titulo),
+                            Text(e.data.toString())
+                          ],
+                        ),
+                      )
+                    ],
+                  )),
                 )
                 .toList(),
-            ]
-          ),
+          ]),
         ],
       ),
     );
