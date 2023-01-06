@@ -1,5 +1,6 @@
 import 'package:despesas_pessoais/model/transacao.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -64,7 +65,7 @@ class _HomeState extends State<Home> {
                         margin: const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 10),
                         child: Text(
-                          e.valor.toString(),
+                          "R\$ ${e.valor.toStringAsFixed(2)}",
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -83,7 +84,7 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           Text(
-                            e.data.toString(),
+                            DateFormat("d MMM y").format(e.data),
                             style: TextStyle(
                                 fontSize: 14, color: Colors.grey[600]),
                           ),
