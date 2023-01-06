@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:despesas_pessoais/model/transacao.dart';
 import 'package:flutter/material.dart';
 
@@ -56,14 +54,40 @@ class _HomeState extends State<Home> {
                   (e) => Card(
                       child: Row(
                     children: [
-                      Container(child: Text(e.valor.toString())),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text(e.titulo),
-                            Text(e.data.toString())
-                          ],
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        )),
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: Text(
+                          e.valor.toString(),
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.purple,
+                          ),
                         ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            e.titulo,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            e.data.toString(),
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey[600]),
+                          ),
+                        ],
                       )
                     ],
                   )),
