@@ -11,13 +11,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var transacoes = [
-    Transacao(
-      id: "t1",
-      titulo: "Transacao 1",
-      valor: 200.00,
-      data: DateTime.now(),
-    ),
+  List<Transacao> transacoes = [
+    // Transacao(
+    //   id: "t1",
+    //   titulo: "Transacao 1",
+    //   valor: 200.00,
+    //   data: DateTime.now(),
+    // ),
   ];
 
   _abrirModalForm(BuildContext context) {

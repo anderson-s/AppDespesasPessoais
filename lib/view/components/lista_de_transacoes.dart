@@ -10,48 +10,68 @@ class ListasTransacoes extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300,
-      child: ListView.builder(
-        itemCount: listaTransacoes.length,
-        itemBuilder: (context, index) {
-          var e = listaTransacoes[index];
-          return Card(
-            child: Row(
+      child: listaTransacoes.isEmpty
+          ? Column(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 2,
-                    ),
-                  ),
-                  padding: const EdgeInsets.all(10),
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: Text(
-                    "R\$ ${e.valor.toStringAsFixed(2)}",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
+                Text(
+                  "Nenhuma Transação Cadastrada!",
+                  style: Theme.of(context).textTheme.headline6,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(e.titulo,
-                        style: Theme.of(context).textTheme.headline6),
-                    Text(
-                      DateFormat("d MMM y").format(e.data),
-                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-                    ),
-                  ],
+                const SizedBox(
+                  height: 20,
                 ),
+                SizedBox(
+                  height: 200,
+                  child: Image.asset(
+                    "assets/images/waiting.png",
+                    fit: BoxFit.cover,
+                  ),
+                )
               ],
+            )
+          : ListView.builder(
+              itemCount: listaTransacoes.length,
+              itemBuilder: (context, index) {
+                var e = listaTransacoes[index];
+                return Card(
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 2,
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: Text(
+                          "R\$ ${e.valor.toStringAsFixed(2)}",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(e.titulo,
+                              style: Theme.of(context).textTheme.headline6),
+                          Text(
+                            DateFormat("d MMM y").format(e.data),
+                            style: TextStyle(
+                                fontSize: 14, color: Colors.grey[600]),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }
