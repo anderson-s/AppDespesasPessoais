@@ -19,32 +19,28 @@ class ListasTransacoes extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      border: Border.all(
-                    color: Colors.purple,
-                    width: 2,
-                  )),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.primary,
+                      width: 2,
+                    ),
+                  ),
                   padding: const EdgeInsets.all(10),
                   margin:
                       const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Text(
                     "R\$ ${e.valor.toStringAsFixed(2)}",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.purple,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      e.titulo,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
+                    Text(e.titulo,
+                        style: Theme.of(context).textTheme.headline6),
                     Text(
                       DateFormat("d MMM y").format(e.data),
                       style: TextStyle(fontSize: 14, color: Colors.grey[600]),
