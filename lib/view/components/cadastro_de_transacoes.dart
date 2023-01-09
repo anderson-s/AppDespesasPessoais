@@ -6,6 +6,16 @@ class CadastroTransacoes extends StatelessWidget {
   final Function(String, double) cadastrar;
   CadastroTransacoes({super.key, required this.cadastrar});
 
+  _enviarFormulario() {
+    String titulo = controllerTitulo.text;
+    double valor = double.tryParse(controllerValor.text) ?? 0.0;
+    if (titulo.isEmpty || valor <= 0.0) {
+      return;
+    } else {
+      cadastrar(titulo, valor);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -22,6 +32,10 @@ class CadastroTransacoes extends StatelessWidget {
             ),
             TextField(
               controller: controllerValor,
+              onSubmitted: (value) => _enviarFormulario(),
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
               decoration: const InputDecoration(
                 labelText: "Valor (R\$)",
               ),
@@ -30,13 +44,12 @@ class CadastroTransacoes extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () {
-                    cadastrar(controllerTitulo.text,
-                        double.tryParse(controllerValor.text) ?? 0.0);
-                  },
+                  onPressed: _enviarFormulario,
                   child: const Text(
                     "Nova Transação",
-                    style: TextStyle(color: Colors.purple),
+                    style: TextStyle(
+                      color: Colors.purple,
+                    ),
                   ),
                 ),
               ],
