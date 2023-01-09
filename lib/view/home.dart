@@ -22,10 +22,11 @@ class _HomeState extends State<Home> {
 
   _abrirModalForm(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return CadastroTransacoes(cadastrar: adicionar);
-        });
+      context: context,
+      builder: (_) {
+        return CadastroTransacoes(cadastrar: adicionar);
+      },
+    );
   }
 
   adicionar(String titulo, double valor) {

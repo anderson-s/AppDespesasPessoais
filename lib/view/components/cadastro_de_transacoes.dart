@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
-class CadastroTransacoes extends StatelessWidget {
-  final controllerTitulo = TextEditingController();
-  final controllerValor = TextEditingController();
+class CadastroTransacoes extends StatefulWidget {
   final Function(String, double) cadastrar;
-  CadastroTransacoes({super.key, required this.cadastrar});
+  
+  const CadastroTransacoes({super.key, required this.cadastrar});
+
+  @override
+  State<CadastroTransacoes> createState() => _CadastroTransacoesState();
+}
+
+class _CadastroTransacoesState extends State<CadastroTransacoes> {
+  final controllerTitulo = TextEditingController();
+
+  final controllerValor = TextEditingController();
 
   _enviarFormulario() {
     String titulo = controllerTitulo.text;
@@ -12,7 +20,7 @@ class CadastroTransacoes extends StatelessWidget {
     if (titulo.isEmpty || valor <= 0.0) {
       return;
     } else {
-      cadastrar(titulo, valor);
+      widget.cadastrar(titulo, valor);
     }
   }
 
