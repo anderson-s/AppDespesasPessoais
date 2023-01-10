@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CadastroTransacoes extends StatefulWidget {
   final Function(String, double) cadastrar;
-  
+
   const CadastroTransacoes({super.key, required this.cadastrar});
 
   @override
@@ -48,16 +48,44 @@ class _CadastroTransacoesState extends State<CadastroTransacoes> {
                 labelText: "Valor (R\$)",
               ),
             ),
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  const Text(
+                    "Nenhuma data selecionada!",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    // style: ButtonStyle(
+                    //   textStyle: MaterialStateProperty.all(
+                    //     const TextStyle(backgroundColor: Colors.purple),
+                    //   ),
+                    // ),
+                    child: const Text("Selecionar Data"),
+                  ),
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
+                ElevatedButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(
+                      const EdgeInsets.all(12)
+                    ),
+                    textStyle: MaterialStateProperty.all(const TextStyle(
+                      color: Colors.white,
+                      // fontWeight: FontWeight.bold,
+                    )),
+                  ),
                   onPressed: _enviarFormulario,
                   child: const Text(
                     "Nova Transação",
-                    style: TextStyle(
-                      color: Colors.purple,
-                    ),
                   ),
                 ),
               ],

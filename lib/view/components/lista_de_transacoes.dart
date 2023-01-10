@@ -46,7 +46,13 @@ class ListasTransacoes extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: FittedBox(
-                          child: Text("R\$${e.valor}"),
+                          child: Text(
+                            "R\$${e.valor}",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ),
