@@ -60,6 +60,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size.height -
+        AppBar().preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Despesas Pessoais"),
@@ -79,13 +83,18 @@ class _HomeState extends State<Home> {
           crossAxisAlignment:
               CrossAxisAlignment.stretch, //Ocupa a largura inteira
           children: [
-            Grafico(
-              transacoesRecentes: _transacoesRecentes(),
+            SizedBox(
+              width: mediaQuery * 0.3,
+              child: Grafico(
+                transacoesRecentes: _transacoesRecentes(),
+              ),
             ),
-            Column(
-              children: [
-                ListasTransacoes(listaTransacoes: transacoes, remover: deletar),
-              ],
+            SizedBox(
+              height: mediaQuery * 0.7,
+              child: ListasTransacoes(
+                listaTransacoes: transacoes,
+                remover: deletar,
+              ),
             ),
           ],
         ),
