@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 
 class ListasTransacoes extends StatelessWidget {
   final List<Transacao> listaTransacoes;
-  const ListasTransacoes({super.key, required this.listaTransacoes});
+  final Function(String) remover;
+  const ListasTransacoes({super.key, required this.listaTransacoes, required this.remover});
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,15 @@ class ListasTransacoes extends StatelessWidget {
                             ),
                           ),
                         ),
+                      ),
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {
+                        remover(e.id);
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
                       ),
                     ),
                     title: Text(
