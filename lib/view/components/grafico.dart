@@ -52,7 +52,7 @@ class Grafico extends StatelessWidget {
                   child: Barra(
                       dia: e["dia"].toString(),
                       valor: double.parse(e["valor"].toString()),
-                      percentual:
+                      percentual: pegarPercentual == 0 ? 0 :
                           double.parse(e["valor"].toString()) / pegarPercentual),
                 ),
               )

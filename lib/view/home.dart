@@ -12,44 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Transacao> transacoes = [
-    Transacao(
-      id: "t1",
-      titulo: "Cartão de Crédito",
-      valor: 400.00,
-      data: DateTime.now(),
-    ),
-    Transacao(
-      id: "t2",
-      titulo: "Conta de Luz",
-      valor: 120.00,
-      data: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    Transacao(
-      id: "t3",
-      titulo: "Conta de Água",
-      valor: 30.00,
-        data: DateTime.now().subtract(const Duration(days: 2)),
-    ),
-    Transacao(
-      id: "t4",
-      titulo: "Internet",
-      valor: 80.00,
-        data: DateTime.now().subtract(const Duration(days: 5)),
-    ),
-      Transacao(
-      id: "t5",
-      titulo: "Gás",
-      valor: 100.00,
-        data: DateTime.now(),
-    ),
-      Transacao(
-      id: "t6",
-      titulo: "Gasolina",
-      valor: 70.00,
-        data: DateTime.now().subtract(const Duration(days: 1)),
-    ),
-  ];
+  List<Transacao> transacoes = [];
 
   List<Transacao> _transacoesRecentes() {
     return transacoes.where((element) {
@@ -67,12 +30,12 @@ class _HomeState extends State<Home> {
     );
   }
 
-  adicionar(String titulo, double valor) {
+  adicionar(String titulo, double valor, DateTime data) {
     final novaTransacao = Transacao(
         id: DateTime.now().microsecondsSinceEpoch.toString(),
         titulo: titulo,
         valor: valor,
-        data: DateTime.now());
+        data: data);
     setState(() {
       transacoes.add(novaTransacao);
     });
@@ -114,7 +77,6 @@ class _HomeState extends State<Home> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
-        
           onPressed: () {
             _abrirModalForm(context);
           },

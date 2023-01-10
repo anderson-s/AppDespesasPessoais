@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class CadastroTransacoes extends StatefulWidget {
-  final Function(String, double) cadastrar;
+  final Function(String, double, DateTime) cadastrar;
 
   const CadastroTransacoes({super.key, required this.cadastrar});
 
@@ -13,14 +13,14 @@ class CadastroTransacoes extends StatefulWidget {
 class _CadastroTransacoesState extends State<CadastroTransacoes> {
   final controllerTitulo = TextEditingController();
   final controllerValor = TextEditingController();
-  DateTime? dataSelecionada;
+  DateTime dataSelecionada = DateTime.now();
   _enviarFormulario() {
     String titulo = controllerTitulo.text;
     double valor = double.tryParse(controllerValor.text) ?? 0.0;
     if (titulo.isEmpty || valor <= 0.0) {
       return;
     } else {
-      widget.cadastrar(titulo, valor);
+      widget.cadastrar(titulo, valor, dataSelecionada);
     }
   }
 
@@ -71,9 +71,7 @@ class _CadastroTransacoesState extends State<CadastroTransacoes> {
                 children: [
                   Expanded(
                     child: Text(
-                      dataSelecionada == null
-                          ? "Nenhuma data selecionada!"
-                          : "Data Selecionada: ${DateFormat("dd/MM/y").format(dataSelecionada!)}",
+                      "Data Selecionada: ${DateFormat("dd/MM/y").format(dataSelecionada)}",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
