@@ -1,5 +1,6 @@
 import 'package:despesas_pessoais/model/transacao.dart';
 import 'package:despesas_pessoais/view/components/cadastro_de_transacoes.dart';
+import 'package:despesas_pessoais/view/components/grafico.dart';
 import 'package:despesas_pessoais/view/components/lista_de_transacoes.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +13,50 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Transacao> transacoes = [
-    // Transacao(
-    //   id: "t1",
-    //   titulo: "Transacao 1",
-    //   valor: 200.00,
-    //   data: DateTime.now(),
-    // ),
+    Transacao(
+      id: "t1",
+      titulo: "Cartão de Crédito",
+      valor: 400.00,
+      data: DateTime.now(),
+    ),
+    Transacao(
+      id: "t2",
+      titulo: "Conta de Luz",
+      valor: 120.00,
+      data: DateTime.now().subtract(const Duration(days: 3)),
+    ),
+    Transacao(
+      id: "t3",
+      titulo: "Conta de Água",
+      valor: 30.00,
+        data: DateTime.now().subtract(const Duration(days: 2)),
+    ),
+    Transacao(
+      id: "t4",
+      titulo: "Internet",
+      valor: 80.00,
+        data: DateTime.now().subtract(const Duration(days: 5)),
+    ),
+      Transacao(
+      id: "t5",
+      titulo: "Gás",
+      valor: 100.00,
+        data: DateTime.now(),
+    ),
+      Transacao(
+      id: "t6",
+      titulo: "Gasolina",
+      valor: 70.00,
+        data: DateTime.now().subtract(const Duration(days: 1)),
+    ),
   ];
+
+  List<Transacao> _transacoesRecentes() {
+    return transacoes.where((element) {
+      return element.data
+          .isAfter(DateTime.now().subtract(const Duration(days: 7)));
+    }).toList();
+  }
 
   _abrirModalForm(BuildContext context) {
     showModalBottomSheet(
@@ -62,12 +100,8 @@ class _HomeState extends State<Home> {
           crossAxisAlignment:
               CrossAxisAlignment.stretch, //Ocupa a largura inteira
           children: [
-            const SizedBox(
-              child: Card(
-                color: Colors.red,
-                elevation: 5,
-                child: Text("Gráfico"),
-              ),
+            Grafico(
+              transacoesRecentes: _transacoesRecentes(),
             ),
             Column(
               children: [
@@ -77,11 +111,15 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _abrirModalForm(context);
-        },
-        child: const Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FloatingActionButton(
+        
+          onPressed: () {
+            _abrirModalForm(context);
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

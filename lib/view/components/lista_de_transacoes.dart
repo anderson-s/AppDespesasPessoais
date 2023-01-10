@@ -34,40 +34,31 @@ class ListasTransacoes extends StatelessWidget {
               itemBuilder: (context, index) {
                 var e = listaTransacoes[index];
                 return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 2,
-                          ),
-                        ),
+                  elevation: 5,
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 5,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      radius: 30,
+                      child: Padding(
                         padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
-                        child: Text(
-                          "R\$ ${e.valor.toStringAsFixed(2)}",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.primary,
-                          ),
+                        child: FittedBox(
+                          child: Text("R\$${e.valor}"),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(e.titulo,
-                              style: Theme.of(context).textTheme.headline6),
-                          Text(
-                            DateFormat("d MMM y").format(e.data),
-                            style: TextStyle(
-                                fontSize: 14, color: Colors.grey[600]),
-                          ),
-                        ],
+                    ),
+                    title: Text(
+                      e.titulo,
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    subtitle: Text(
+                      DateFormat("dd MMM y").format(
+                        e.data,
                       ),
-                    ],
+                    ),
                   ),
                 );
               },
