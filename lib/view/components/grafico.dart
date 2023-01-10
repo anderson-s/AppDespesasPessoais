@@ -26,7 +26,7 @@ class Grafico extends StatelessWidget {
         "dia": DateFormat.E().format(diaSemana)[0],
         "valor": totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get pegarPercentual {
