@@ -5,12 +5,13 @@ import 'package:intl/intl.dart';
 class ListasTransacoes extends StatelessWidget {
   final List<Transacao> listaTransacoes;
   final Function(String) remover;
-  const ListasTransacoes({super.key, required this.listaTransacoes, required this.remover});
+  const ListasTransacoes(
+      {super.key, required this.listaTransacoes, required this.remover});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: 430 ,
       child: listaTransacoes.isEmpty
           ? Column(
               children: [

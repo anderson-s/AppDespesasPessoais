@@ -13,6 +13,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Transacao> transacoes = [
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
     Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now())
   ];
 
