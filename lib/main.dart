@@ -13,8 +13,8 @@ class Inicio extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
       [
-        DeviceOrientation.portraitUp,
-        // DeviceOrientation.landscapeRight
+        // DeviceOrientation.portraitUp,
+        DeviceOrientation.landscapeRight
       ],
     );
     final ThemeData tema = ThemeData();

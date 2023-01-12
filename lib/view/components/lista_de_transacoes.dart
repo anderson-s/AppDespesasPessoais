@@ -11,23 +11,33 @@ class ListasTransacoes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return listaTransacoes.isEmpty
-        ? Column(
-            children: [
-              Text(
-                "Nenhuma Transação Cadastrada!",
-                style: Theme.of(context).textTheme.headline6,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 200,
-                child: Image.asset(
-                  "assets/images/waiting.png",
-                  fit: BoxFit.cover,
-                ),
-              )
-            ],
+        ? LayoutBuilder(
+            builder: (p0, p1) {
+              return Column(
+                children: [
+                  SizedBox(
+                    height: p1.maxHeight * 0.05,
+                  ),
+                  SizedBox(
+                    height: p1.maxHeight * 0.3,
+                    child: Text(
+                      "Nenhuma Transação Cadastrada!",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
+                  SizedBox(
+                    height: p1.maxHeight * 0.05,
+                  ),
+                  SizedBox(
+                    height: p1.maxHeight * 0.6,
+                    child: Image.asset(
+                      "assets/images/waiting.png",
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              );
+            },
           )
         : ListView.builder(
             itemCount: listaTransacoes.length,
