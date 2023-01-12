@@ -64,7 +64,8 @@ class _HomeState extends State<Home> {
     final mediaQuery = MediaQuery.of(context).size.height -
         AppBar().preferredSize.height -
         MediaQuery.of(context).padding.top;
-
+    bool modoPaisagem =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -75,42 +76,43 @@ class _HomeState extends State<Home> {
         ),
         centerTitle: true,
         actions: [
+          if (modoPaisagem)
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  mostrarGrafico = !mostrarGrafico;
+                });
+              },
+              icon: Icon(mostrarGrafico ? Icons.list : Icons.show_chart),
+            ),
           IconButton(
             onPressed: () {
               _abrirModalForm(context);
             },
             icon: const Icon(Icons.add),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment:
               CrossAxisAlignment.stretch, //Ocupa a largura inteira
           children: [
-            Switch(
-              value: mostrarGrafico,
-              onChanged: (value) {
-                setState(() {
-                  mostrarGrafico = value;
-                });
-              },
-            ),
-            mostrarGrafico
-                ? SizedBox(
-                    height: mediaQuery * 0.3,
-                    child: Grafico(
-                      transacoesRecentes: _transacoesRecentes(),
-                    ),
-                  )
-                : SizedBox(
-                    height: mediaQuery * 0.7,
-                    child: ListasTransacoes(
-                      listaTransacoes: transacoes,
-                      remover: deletar,
-                    ),
-                  ),
+            if (mostrarGrafico || !modoPaisagem)
+              SizedBox(
+                height: modoPaisagem ? mediaQuery * 0.7 : mediaQuery * 0.3,
+                child: Grafico(
+                  transacoesRecentes: _transacoesRecentes(),
+                ),
+              ),
+            if (!mostrarGrafico || !modoPaisagem)
+              SizedBox(
+                height: mediaQuery * 0.7,
+                child: ListasTransacoes(
+                  listaTransacoes: transacoes,
+                  remover: deletar,
+                ),
+              ),
           ],
         ),
       ),

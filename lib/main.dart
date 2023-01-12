@@ -11,12 +11,12 @@ class Inicio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations(
-      [
-        // DeviceOrientation.portraitUp,
-        DeviceOrientation.landscapeRight
-      ],
-    );
+    // SystemChrome.setPreferredOrientations(
+    //   [
+    //     DeviceOrientation.portraitUp,
+    //     DeviceOrientation.landscapeRight
+    //   ],
+    // );
     final ThemeData tema = ThemeData();
     return MaterialApp(
       debugShowCheckedModeBanner: false,

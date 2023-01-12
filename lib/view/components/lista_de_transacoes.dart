@@ -18,12 +18,9 @@ class ListasTransacoes extends StatelessWidget {
                   SizedBox(
                     height: p1.maxHeight * 0.05,
                   ),
-                  SizedBox(
-                    height: p1.maxHeight * 0.3,
-                    child: Text(
-                      "Nenhuma Transação Cadastrada!",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
+                  Text(
+                    "Nenhuma Transação Cadastrada!",
+                    style: Theme.of(context).textTheme.headline6,
                   ),
                   SizedBox(
                     height: p1.maxHeight * 0.05,
