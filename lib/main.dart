@@ -12,7 +12,10 @@ class Inicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp]
+      [
+        DeviceOrientation.portraitUp,
+        // DeviceOrientation.landscapeRight
+      ],
     );
     final ThemeData tema = ThemeData();
     return MaterialApp(
@@ -34,7 +37,7 @@ class Inicio extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 20 ,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
