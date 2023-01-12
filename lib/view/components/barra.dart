@@ -13,48 +13,59 @@ class Barra extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 20,
-          child: FittedBox(
-            child: Text("R\$${valor.toStringAsFixed(2)}"),
-          ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: const Color.fromRGBO(220, 220, 220, 1),
-            border: Border.all(
-              color: Colors.grey,
-              width: 1.0,
+    return LayoutBuilder(
+      builder: (context, constraint) {
+        return Column(
+          children: [
+            SizedBox(
+              height: constraint.maxHeight * 0.15,
+              child: FittedBox(
+                child: Text("R\$${valor.toStringAsFixed(2)}"),
+              ),
             ),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          height: 60,
-          width: 10,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              FractionallySizedBox(
-                heightFactor: percentual,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(5),
+            SizedBox(
+              height: constraint.maxHeight * 0.05,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: const Color.fromRGBO(220, 220, 220, 1),
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              height: constraint.maxHeight * 0.6,
+              width: 10,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  FractionallySizedBox(
+                    heightFactor: percentual,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.primary,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
                   ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: constraint.maxHeight * 0.05,
+            ),
+            SizedBox(
+              height: constraint.maxHeight * 0.15,
+              child: FittedBox(
+                child: Text(
+                  dia,
                 ),
               ),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(dia),
-      ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

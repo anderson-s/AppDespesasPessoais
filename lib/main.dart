@@ -30,7 +30,7 @@ class Inicio extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             fontFamily: 'OpenSans',
-            fontSize: 20,
+            fontSize: 20 ,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

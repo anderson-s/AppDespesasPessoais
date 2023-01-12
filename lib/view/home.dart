@@ -66,7 +66,12 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Despesas Pessoais"),
+        title: Text(
+          "Despesas Pessoais",
+          style: TextStyle(
+            fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+          ),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -84,7 +89,7 @@ class _HomeState extends State<Home> {
               CrossAxisAlignment.stretch, //Ocupa a largura inteira
           children: [
             SizedBox(
-              width: mediaQuery * 0.3,
+              height: mediaQuery * 0.3,
               child: Grafico(
                 transacoesRecentes: _transacoesRecentes(),
               ),
