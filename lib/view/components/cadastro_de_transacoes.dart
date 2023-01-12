@@ -43,69 +43,76 @@ class _CadastroTransacoesState extends State<CadastroTransacoes> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            TextField(
-              controller: controllerTitulo,
-              decoration: const InputDecoration(
-                labelText: "Titulo",
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            right: 10,
+            left: 10,
+            bottom: 10 + MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: Column(
+            children: [
+              TextField(
+                controller: controllerTitulo,
+                decoration: const InputDecoration(
+                  labelText: "Titulo",
+                ),
               ),
-            ),
-            TextField(
-              controller: controllerValor,
-              onSubmitted: (value) => _enviarFormulario(),
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
+              TextField(
+                controller: controllerValor,
+                onSubmitted: (value) => _enviarFormulario(),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                decoration: const InputDecoration(
+                  labelText: "Valor (R\$)",
+                ),
               ),
-              decoration: const InputDecoration(
-                labelText: "Valor (R\$)",
-              ),
-            ),
-            SizedBox(
-              height: 70,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      "Data Selecionada: ${DateFormat("dd/MM/y").format(dataSelecionada)}",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Data Selecionada: ${DateFormat("dd/MM/y").format(dataSelecionada)}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      _abrirDatePicker();
-                    },
-                    child: const Text("Selecionar Data"),
+                    TextButton(
+                      onPressed: () {
+                        _abrirDatePicker();
+                      },
+                      child: const Text("Selecionar Data"),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      padding:
+                          MaterialStateProperty.all(const EdgeInsets.all(16)),
+                      textStyle: MaterialStateProperty.all(const TextStyle(
+                        color: Colors.white,
+                        // fontWeight: FontWeight.bold,
+                      )),
+                    ),
+                    onPressed: _enviarFormulario,
+                    child: const Text(
+                      "Nova Transação",
+                    ),
                   ),
                 ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    padding:
-                        MaterialStateProperty.all(const EdgeInsets.all(16)),
-                    textStyle: MaterialStateProperty.all(const TextStyle(
-                      color: Colors.white,
-                      // fontWeight: FontWeight.bold,
-                    )),
-                  ),
-                  onPressed: _enviarFormulario,
-                  child: const Text(
-                    "Nova Transação",
-                  ),
-                ),
-              ],
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
