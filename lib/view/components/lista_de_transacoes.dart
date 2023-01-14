@@ -63,15 +63,31 @@ class ListasTransacoes extends StatelessWidget {
                       ),
                     ),
                   ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      remover(e.id);
-                    },
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                    ),
-                  ),
+                  trailing: MediaQuery.of(context).size.width > 480
+                      ? TextButton.icon(
+                          onPressed: () {
+                            remover(e.id);
+                          },
+                          icon: Icon(
+                            Icons.delete,
+                            color: Theme.of(context).errorColor,
+                          ),
+                          label: Text(
+                            "Excluir",
+                            style: TextStyle(
+                              color: Theme.of(context).errorColor,
+                            ),
+                          ),
+                        )
+                      : IconButton(
+                          onPressed: () {
+                            remover(e.id);
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        ),
                   title: Text(
                     e.titulo,
                     style: Theme.of(context).textTheme.headline6,

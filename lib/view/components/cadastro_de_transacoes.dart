@@ -97,12 +97,17 @@ class _CadastroTransacoesState extends State<CadastroTransacoes> {
                 children: [
                   ElevatedButton(
                     style: ButtonStyle(
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(16)),
-                      textStyle: MaterialStateProperty.all(const TextStyle(
-                        color: Colors.white,
-                        // fontWeight: FontWeight.bold,
-                      )),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.all(
+                          16,
+                        ),
+                      ),
+                      textStyle: MaterialStateProperty.all(
+                        const TextStyle(
+                          color: Colors.white,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     onPressed: _enviarFormulario,
                     child: const Text(

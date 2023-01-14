@@ -14,14 +14,14 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   bool mostrarGrafico = false;
   List<Transacao> transacoes = [
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    // Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now())
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
+    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now())
   ];
 
   List<Transacao> _transacoesRecentes() {
@@ -100,14 +100,14 @@ class _HomeState extends State<Home> {
           children: [
             if (mostrarGrafico || !modoPaisagem)
               SizedBox(
-                height: modoPaisagem ? mediaQuery * 0.7 : mediaQuery * 0.3,
+                height: modoPaisagem ? mediaQuery * 0.8 : mediaQuery * 0.3,
                 child: Grafico(
                   transacoesRecentes: _transacoesRecentes(),
                 ),
               ),
             if (!mostrarGrafico || !modoPaisagem)
               SizedBox(
-                height: mediaQuery * 0.7,
+                height: mediaQuery * (modoPaisagem ? 1 : 0.7),
                 child: ListasTransacoes(
                   listaTransacoes: transacoes,
                   remover: deletar,
