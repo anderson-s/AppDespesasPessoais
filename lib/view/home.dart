@@ -1,7 +1,9 @@
 import 'package:despesas_pessoais/model/transacao.dart';
+
 import 'package:despesas_pessoais/view/components/cadastro_de_transacoes.dart';
 import 'package:despesas_pessoais/view/components/grafico.dart';
 import 'package:despesas_pessoais/view/components/lista_de_transacoes.dart';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -13,16 +15,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool mostrarGrafico = false;
-  List<Transacao> transacoes = [
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now()),
-    Transacao(id: "id", titulo: "titulo", valor: 500.00, data: DateTime.now())
-  ];
+
+  List<Transacao> transacoes = [];
 
   List<Transacao> _transacoesRecentes() {
     return transacoes.where((element) {
@@ -66,34 +60,25 @@ class _HomeState extends State<Home> {
         MediaQuery.of(context).padding.top;
     bool modoPaisagem =
         MediaQuery.of(context).orientation == Orientation.landscape;
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Despesas Pessoais",
-          style: TextStyle(
-            fontSize: 20 * MediaQuery.of(context).textScaleFactor,
-          ),
+    final actions = [
+      if (modoPaisagem)
+        IconButton(
+          icon: Icon(mostrarGrafico ? Icons.list : Icons.show_chart),
+          onPressed: () {
+            setState(() {
+              mostrarGrafico = !mostrarGrafico;
+            });
+          },
         ),
-        centerTitle: true,
-        actions: [
-          if (modoPaisagem)
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  mostrarGrafico = !mostrarGrafico;
-                });
-              },
-              icon: Icon(mostrarGrafico ? Icons.list : Icons.show_chart),
-            ),
-          IconButton(
-            onPressed: () {
-              _abrirModalForm(context);
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
+      IconButton(
+        icon: const Icon(Icons.add),
+        onPressed: () {
+          _abrirModalForm(context);
+        },
       ),
-      body: SingleChildScrollView(
+    ];
+    final corpo = SafeArea(
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment:
               CrossAxisAlignment.stretch, //Ocupa a largura inteira
@@ -116,6 +101,19 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+    );
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Despesas Pessoais",
+          style: TextStyle(
+            fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+          ),
+        ),
+        centerTitle: true,
+        actions: actions,
+      ),
+      body: corpo,
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
@@ -125,7 +123,6 @@ class _HomeState extends State<Home> {
           child: const Icon(Icons.add),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
